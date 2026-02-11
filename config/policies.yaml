@@ -1,0 +1,29 @@
+# Simple policy system for teaching "governance" and "trust enforcement"
+
+# use block pattern
+rules:
+  - id: "no_secrets"
+    description: "Do not reveal secrets, API keys, credentials, or private data."
+    block_patterns:
+      - "(api[-_ ]?key)"
+      - "(password)"
+      - "(secret)"
+      - "(token)"
+
+  - id: "no_illegal_harm"
+    description: "Do not provide instructions to commit wrongdoing or harm."
+    block_patterns:
+      - "(how to hack)"
+      - "(build a bomb)"
+      - "(phishing)"
+
+  - id: "no_identity_claims"
+    description: "Do not claim to be a real person or imply real-world verification."
+    block_patterns:
+      - "(i am a doctor)"
+      - "(i am your lawyer)"
+      - "(verified)"
+
+response_overrides:
+  blocked: "REFUSE"
+  safe: "ALLOW"
